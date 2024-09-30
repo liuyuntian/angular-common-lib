@@ -16,6 +16,17 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "paths": {
+      "common-lib": [
+        "dist/common-lib"
+      ],
+      "select-filter": [
+        "dist/select-filter"
+      ],
+      "select-filter-components": [
+        "dist/select-filter-components"
+      ]
+    },
     "target": "es2020",
     "module": "es2020",
     "lib": [
@@ -27,6 +38,7 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "skipLibCheck": true
   }
 }

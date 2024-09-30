@@ -1,0 +1,92 @@
+@use '@angular/material' as mat;
+@import "@angular/material/theming";
+// Custom typography config that overrides the font-family
+$custom-typography: mat.define-typography-config(
+  $font-family: "Hind",
+);
+@include mat.core($custom-typography);
+
+// Theme Foreground (text)
+$dark-text: #26282d;
+$dark-primary-text: rgba($dark-text, 0.87);
+$dark-accent-text: rgba($dark-primary-text, 0.54);
+$dark-disabled-text: rgba($dark-primary-text, 0.38);
+$dark-dividers: rgba($dark-primary-text, 0.12);
+$dark-focused: rgba($dark-primary-text, 0.12);
+
+$theme-foreground: (
+  base: #26282d,
+  divider: $dark-dividers,
+  dividers: $dark-dividers,
+  disabled: $dark-disabled-text,
+  disabled-button: rgba($dark-text, 0.26),
+  disabled-text: $dark-disabled-text,
+  elevation: #26282d,
+  secondary-text: $dark-accent-text,
+  hint-text: $dark-disabled-text,
+  accent-text: $dark-accent-text,
+  icon: $dark-accent-text,
+  icons: $dark-accent-text,
+  text: $dark-primary-text,
+  slider-min: $dark-primary-text,
+  slider-off: rgba($dark-text, 0.26),
+  slider-off-active: $dark-disabled-text,
+);
+
+// Theme primary
+body {
+  --primary-color: #0077e7;
+  --primary-lighter-color: #b3d6f8;
+  --primary-darker-color: #005add;
+  --text-primary-color: #{$light-primary-text};
+  --text-primary-lighter-color: #{$dark-primary-text};
+  --text-primary-darker-color: #{$light-primary-text};
+}
+$mat-primary: (
+  main: #0077e7,
+  lighter: #b3d6f8,
+  darker: #005add,
+  200: #0077e7,
+  // For slide toggle,
+  contrast:
+    (
+      main: $light-primary-text,
+      lighter: $dark-primary-text,
+      darker: $light-primary-text,
+    ),
+);
+$theme-primary: mat.define-palette($mat-primary, main, lighter, darker);
+
+// Theme secondary
+body {
+  --accent-color: #6c6c6c;
+  --accent-lighter-color: #d3d3d3;
+  --accent-darker-color: #4f4f4f;
+  --text-accent-color: #{$light-primary-text};
+  --text-accent-lighter-color: #{$dark-primary-text};
+  --text-accent-darker-color: #{$light-primary-text};
+}
+$mat-accent: (
+  main: #6c6c6c,
+  lighter: #d3d3d3,
+  darker: #4f4f4f,
+  200: #6c6c6c,
+  // For slide toggle,
+  contrast:
+    (
+      main: $light-primary-text,
+      lighter: $dark-primary-text,
+      darker: $light-primary-text,
+    ),
+);
+$theme-accent: mat.define-palette($mat-accent, main, lighter, darker);
+
+// Build theme object
+$my-app-primary: mat.define-palette(mat.$blue-grey-palette);
+$my-app-accent: mat.define-palette(mat.$light-green-palette);
+
+$my-app-theme: mat.define-light-theme($theme-primary, $theme-accent);
+$my-app-theme-merged: map-merge($my-app-theme, (foreground: $theme-foreground));
+
+// include the custom theme object into the angular material theme
+@include mat.all-component-themes($my-app-theme-merged);
